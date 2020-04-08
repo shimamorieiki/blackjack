@@ -11,7 +11,7 @@ class Player():
         self.hand = []
         self.name = "pl"
 
-    def set_card(self):
+    def hit(self):
         self.hand.append(random.randint(1,10))
 
     def get_hand(self):
@@ -26,12 +26,18 @@ class Player():
     def win_lose(self,dealer_hand):
         score = sum(self.hand)
         dealer_score = sum(dealer_hand)
-        if score >= 22:
+
+        if dealer_score >=22:
+            print("Dealer Bust")
+
+        if score > 21 and dealer_score > 21:
             print("You Lose")
-        elif dealer_score >=22:
+
+
+        if score > dealer_score:
             print("You Win")
-        elif score > dealer_score:
-            print("You Win")
+        elif score == dealer_score:
+            print("Draw")
         else:
             print("You Lose")
 
@@ -44,7 +50,7 @@ class Dealer(Player):
         self.hand = []
         self.name = "dealer"
 
-    def set_card_d(self,pl_score):
+    def hit_d(self,pl_score):
         while sum(self.hand)<17:
             if sum(self.hand)<pl_score:
                 self.hand.append(random.randint(1,10))
@@ -56,43 +62,62 @@ class Dealer(Player):
 
         return self.hand
 
+class Game():
+    """docstring forGame."""
 
-def main():
-    flag = 0
 
-    dl = Dealer()
-    pl = Player()
 
-    dl.set_card()
-    pl.set_card()
+    def __init__(self):
+        card = list(range(52))
+        self.card =  random.shuffle(card)
+        print(self.card)
 
-    print(pl.get_hand())
-    print(dl.get_hand())
-    print(pl.get_name() + " の得点は " + str(pl.score()))
-    print(dl.get_name() + " の得点は " + str(dl.score()))
+    def hit(self):
+        self.hand.append(random.randint(1,10))
 
-    command = input("ディールの時は1を勝負の時は2を入力:")
-    while command != "2":
-        pl.set_card()
+    def play(self):
+
+        flag = 0
+
+        dl = Dealer()
+        pl = Player()
+
+        dl.hit()
+        pl.hit()
 
         print(pl.get_hand())
+        print(dl.get_hand())
         print(pl.get_name() + " の得点は " + str(pl.score()))
+        print(dl.get_name() + " の得点は " + str(dl.score()))
 
-        if pl.score() > 22:
-            print("You Lose")
-            flag = 1
-            break
+        command = input("hit:1 stand:2 => ")
+        while command != "2":
+            pl.hit()
 
-        if pl.score() == 21:
-            print("Black Jack")
-            flag = 1
-            break
+            print(pl.get_hand())
+            print(pl.get_name() + " の得点は " + str(pl.score()))
 
-        command = input("ディールの時は1を勝負の時は2を入力:")
+            if pl.score() > 21:
+                print("Bust")
+                break
 
-    if flag == 0:
-        pl.win_lose(dl.set_card_d(pl.score()))
+            if pl.score() == 21:
+                print("Black Jack")
+                break
 
+            command = input("ディールの時は1を勝負の時は2を入力:")
+
+        pl.win_lose(dl.hit_d(pl.score()))
+
+
+
+
+def main():
+    # g = Game()
+    # g.play()
+    card = list(range(52))
+    random.shuffle(card)
+    print(card)
 
 
 if __name__ == '__main__':
