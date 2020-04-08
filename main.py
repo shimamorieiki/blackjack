@@ -22,6 +22,9 @@ class Player():
     def score(self):
         return sum(self.hand)
 
+    def clear(self):
+        self.hand = []
+
 
 class Dealer(Player):
     """docstring for Dealer."""
@@ -64,7 +67,17 @@ class Game():
 
     def hit(self):
         #ここまではどうにかしてトランプの情報が残ってるからうまく画像に反映させたい
-        return self.card.pop(0)%13+1
+        if len(self.card) >= 10:
+            return self.card.pop(0)%13+1
+        else:
+            print("残りカードが少なくなってきた")
+            print(self.card)
+            c = list(range(52))
+            random.shuffle(c)
+            self.card.extend(c)
+            print("カードを追加しました")
+            print(self.card)
+            return self.card.pop(0)%13+1
 
     def win_lose(self):
         score = sum(self.pl.get_hand())
@@ -125,12 +138,23 @@ class Game():
 
         self.win_lose()
 
-
+    def clear(self):
+        self.pl.clear()
+        self.dl.clear()
 
 
 def main():
     g = Game()
-    g.play()
+    while True:
+        g.play()
+        x = input("まだやりますか y/n")
+        if x =="n":
+            break
+        elif x =="y":
+            pass
+        else:
+            print("続ける")
+        g.clear()
 
 
 if __name__ == '__main__':
