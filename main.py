@@ -64,10 +64,10 @@ def main():
         dl.set_card()
         pl.set_card()
 
-        print(dl.get_hand())
         print(pl.get_hand())
-        print(dl.get_name() + " の得点は " + str(dl.score()))
+        print(dl.get_hand())
         print(pl.get_name() + " の得点は " + str(pl.score()))
+        print(dl.get_name() + " の得点は " + str(dl.score()))
 
         if pl.score() > 22:
             print("You Lose")
