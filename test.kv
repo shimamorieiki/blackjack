@@ -288,12 +288,10 @@ TextWidget:
                     #         size: self.size
                 Button:
                     id: button1
-                    text: "deal"
                     font_size: 20
                     on_press: root.buttonClicked()
                     canvas.after:
-                        Color:
-                            rgba: 1, 0.3, 0.1, 1
-                        Ellipse:
+                        Rectangle:
+                            source: "./img/cman20200409203101338.png"
                             pos: self.pos
                             size: self.size
