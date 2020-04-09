@@ -1,0 +1,208 @@
+TextWidget:
+
+<TextWidget>:
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+        canvas.before:
+            # Color:
+            #     rgba:1,0,0,1
+            Rectangle:
+                source: "./img/457794-PFCW5A-392.jpg"
+                pos: self.pos
+                size: self.size
+
+
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y:0.5
+
+            BoxLayout:
+                orientation: 'horizontal'
+
+                BoxLayout:
+                    orientation: 'horizontal'
+
+                    Label:
+                        id: label1
+                        font_size: 68
+                        size_hint_x: 0.2
+                        text: "space"
+
+                        canvas.before:
+                            Color:
+                                rgba: 0, 1, 1, 1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+                    Label:
+                        id: label1
+                        font_size: 68
+                        size_hint_x: 1
+                        text: "dealer"
+                        canvas.before:
+                            Color:
+                                rgba: 1, 0, 1, 1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+                    Label:
+                        id: label1
+                        font_size: 68
+                        size_hint_x: 0.2
+                        # text: "dec"
+                        canvas.before:
+                            Rectangle:
+                                source: "./img/OIP.jpg"
+                                pos: self.pos
+                                size: self.size
+
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                size_hint_x:0.2
+
+                BoxLayout:
+                    orientation:"vertical"
+
+                    Label:
+                        id: label1
+                        font_size: 20
+                        text: "bet"
+                        canvas.before:
+                            Color:
+                                rgba:1,0,1,1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+                    Label:
+                        id: label1
+                        font_size: 20
+                        text: "100"
+                        canvas.before:
+                            Color:
+                                rgba:1,0,1,1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+                    Label:
+                        id: label1
+                        font_size: 20
+                        text: "500"
+                        canvas.before:
+                            Color:
+                                rgba:1,0,1,1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+                    Label:
+                        id: label1
+                        font_size: 20
+                        text: "100"
+                        canvas.before:
+                            Color:
+                                rgba:1,0,1,1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+                    Label:
+                        id: label1
+                        font_size: 20
+                        text: "500"
+                        canvas.before:
+                            Color:
+                                rgba:1,0,1,1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+            BoxLayout:
+                orientation: 'horizontal'
+
+                Label:
+                    id: label1
+                    font_size: 30
+                    canvas.before:
+                        Rectangle:
+                            source:"./img/card_spade_01.png"
+                            pos: self.pos
+                            size: self.size
+
+                Label:
+                    id: label1
+                    font_size: 30
+                    size_hint_y:0.4
+                    canvas.before:
+                        Rectangle:
+                            source:"./img/card_spade_02.png"
+                            pos: self.pos
+                            size: self.size
+
+                Label:
+                    id: label1
+                    font_size: 30
+                    size_hint_y: 0.4
+                    canvas.before:
+                        Rectangle:
+                            source:"./img/card_spade_03.png"
+                            pos: self.pos
+                            size: self.size
+
+            BoxLayout:
+                size_hint_x:0.2
+                size_hint_y:0.5
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y:0.3
+
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    id: label1
+                    font_size: 68
+                    text: "score"
+                    canvas.before:
+                        Color:
+                            rgba: 0, 1, 0.5, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+            BoxLayout:
+
+                orientation: 'horizontal'
+                color:0,0,0,0
+
+                Label:
+                    id: label2
+                    font_size: 20
+                    text: "text.root"
+
+                Button:
+                    id: button1
+                    text: "deal"
+                    font_size: 20
+                    on_press: root.buttonClicked()
+                    # canvas.before:
+                    #     Ellipse:
+                    #         pos: self.pos
+                    #         size: self.size
+                Button:
+                    id: button1
+                    text: "deal"
+                    font_size: 20
+                    on_press: root.buttonClicked()
+                    canvas.after:
+                        Color:
+                            rgba: 1, 0.3, 0.1, 1
+                        Ellipse:
+                            pos: self.pos
+                            size: self.size
