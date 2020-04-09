@@ -125,64 +125,20 @@ TextWidget:
 
                     BoxLayout:
                         orientation:"horizontal"
-                        Label:
-                            id: label1
-                            font_size: 20
-                            text: "100"
-                            color:1,0,0,1
-                        Button:
-                            id: button1
-                            canvas.after:
-                                Ellipse:
-                                    source:"./img/019_blue.png"
-                                    pos: self.pos
-                                    size: self.size
 
+                        Slider:
+                            id: testSlider
+                            size_hint_x: 0.75
+                            min: 1
+                            max: 10000
+                            value: 20.0
 
-                    BoxLayout:
-                        orientation:"horizontal"
-                        Label:
-                            id: label1
-                            font_size: 20
-                            text: "500"
-                            color:1,0,0,1
-                        Button:
-                            id: button1
-                            canvas.after:
-                                Ellipse:
-                                    source:"./img/019_blue.png"
-                                    pos: self.pos
-                                    size: self.size
-
-                    BoxLayout:
-                        orientation:"horizontal"
-                        Label:
-                            id: label1
-                            font_size: 20
-                            text: "1000"
-                            color:1,0,0,1
-                        Button:
-                            id: button1
-                            canvas.after:
-                                Ellipse:
-                                    source:"./img/019_blue.png"
-                                    pos: self.pos
-                                    size: self.size
-
-                    BoxLayout:
-                        orientation:"horizontal"
-                        Label:
-                            id: label1
-                            font_size: 20
-                            text: "5000"
-                            color:1,0,0,1
-                        Button:
-                            id: button1
-                            canvas.after:
-                                Ellipse:
-                                    source:"./img/019_blue.png"
-                                    pos: self.pos
-                                    size: self.size
+                        TextInput:
+                            id:te
+                            size_hint_x: 0.25
+                            text: '{:.0f}'.format(testSlider.value)
+                            multiline: False
+                            on_text_validate: testSlider.value = int(self.text)
 
             BoxLayout:
                 orientation: 'horizontal'

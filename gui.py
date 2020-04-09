@@ -10,7 +10,7 @@ class TextWidget(Widget):
 
     def __init__(self, **kwargs):
         super(TextWidget, self).__init__(**kwargs)
-        self.text = 'a'
+        self.text = ''
 
     def buttonClicked(self):        # ボタンをクリック時
         self.text = 'Hello World'
