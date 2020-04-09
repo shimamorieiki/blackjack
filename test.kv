@@ -28,27 +28,70 @@ TextWidget:
                         id: label1
                         font_size: 68
                         size_hint_x: 0.2
-                        text: "space"
 
-                        canvas.before:
-                            Color:
-                                rgba: 0, 1, 1, 1
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
 
-                    Label:
-                        id: label1
-                        font_size: 68
-                        size_hint_x: 1
-                        text: "dealer"
-                        canvas.before:
-                            Color:
-                                rgba: 1, 0, 1, 1
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                    BoxLayout:
+                        orientation: 'horizontal'
 
+                        Label:
+                            id: label1
+                            size_hint_x: 0.2
+                            size_hint_y: 0.7
+                            canvas.before:
+                                Rectangle:
+                                    source:"./img/card_spade_03.png"
+                                    pos: self.pos
+                                    size: self.size
+
+                        Label:
+                            id: label1
+                            size_hint_x: 0.2
+                            size_hint_y: 0.7
+                            canvas.before:
+                                Rectangle:
+                                    source:"./img/card_spade_03.png"
+                                    pos: self.pos
+                                    size: self.size
+
+                        Label:
+                            id: label1
+                            size_hint_x: 0.2
+                            size_hint_y: 0.7
+                            canvas.before:
+                                Rectangle:
+                                    source:"./img/card_spade_03.png"
+                                    pos: self.pos
+                                    size: self.size
+
+                        Label:
+                            id: label1
+                            size_hint_x: 0.2
+                            size_hint_y: 0.7
+                            canvas.before:
+                                Rectangle:
+                                    source:"./img/card_spade_03.png"
+                                    pos: self.pos
+                                    size: self.size
+
+                        Label:
+                            id: label1
+                            size_hint_x: 0.2
+                            size_hint_y: 0.7
+                            canvas.before:
+                                Rectangle:
+                                    source:"./img/card_spade_03.png"
+                                    pos: self.pos
+                                    size: self.size
+
+                        Label:
+                            id: label1
+                            size_hint_x: 0.2
+                            size_hint_y: 0.7
+                            canvas.before:
+                                Rectangle:
+                                    source:"./img/card_spade_03.png"
+                                    pos: self.pos
+                                    size: self.size
                     Label:
                         id: label1
                         font_size: 68
@@ -67,61 +110,79 @@ TextWidget:
 
                 BoxLayout:
                     orientation:"vertical"
+                    canvas.before:
+                        Color:
+                            rgba:1,0,1,1
+                        Rectangle:
+                            source:"./img/OIP6N1PN9K4.jpg"
+                            pos: self.pos
+                            size: self.size
 
                     Label:
                         id: label1
                         font_size: 20
                         text: "bet"
-                        canvas.before:
-                            Color:
-                                rgba:1,0,1,1
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
 
-                    Label:
-                        id: label1
-                        font_size: 20
-                        text: "100"
-                        canvas.before:
-                            Color:
-                                rgba:1,0,1,1
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                    BoxLayout:
+                        orientation:"horizontal"
+                        Label:
+                            id: label1
+                            font_size: 20
+                            text: "100"
+                            color:1,0,0,1
+                        Button:
+                            id: button1
+                            canvas.after:
+                                Ellipse:
+                                    source:"./img/019_blue.png"
+                                    pos: self.pos
+                                    size: self.size
 
-                    Label:
-                        id: label1
-                        font_size: 20
-                        text: "500"
-                        canvas.before:
-                            Color:
-                                rgba:1,0,1,1
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
 
-                    Label:
-                        id: label1
-                        font_size: 20
-                        text: "100"
-                        canvas.before:
-                            Color:
-                                rgba:1,0,1,1
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                    BoxLayout:
+                        orientation:"horizontal"
+                        Label:
+                            id: label1
+                            font_size: 20
+                            text: "500"
+                            color:1,0,0,1
+                        Button:
+                            id: button1
+                            canvas.after:
+                                Ellipse:
+                                    source:"./img/019_blue.png"
+                                    pos: self.pos
+                                    size: self.size
 
-                    Label:
-                        id: label1
-                        font_size: 20
-                        text: "500"
-                        canvas.before:
-                            Color:
-                                rgba:1,0,1,1
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                    BoxLayout:
+                        orientation:"horizontal"
+                        Label:
+                            id: label1
+                            font_size: 20
+                            text: "1000"
+                            color:1,0,0,1
+                        Button:
+                            id: button1
+                            canvas.after:
+                                Ellipse:
+                                    source:"./img/019_blue.png"
+                                    pos: self.pos
+                                    size: self.size
+
+                    BoxLayout:
+                        orientation:"horizontal"
+                        Label:
+                            id: label1
+                            font_size: 20
+                            text: "5000"
+                            color:1,0,0,1
+                        Button:
+                            id: button1
+                            canvas.after:
+                                Ellipse:
+                                    source:"./img/019_blue.png"
+                                    pos: self.pos
+                                    size: self.size
 
             BoxLayout:
                 orientation: 'horizontal'
@@ -129,6 +190,7 @@ TextWidget:
                 Label:
                     id: label1
                     font_size: 30
+                    size_hint_y:0.4
                     canvas.before:
                         Rectangle:
                             source:"./img/card_spade_01.png"
@@ -152,6 +214,35 @@ TextWidget:
                     canvas.before:
                         Rectangle:
                             source:"./img/card_spade_03.png"
+                            pos: self.pos
+                            size: self.size
+
+                Label:
+                    id: label1
+                    font_size: 30
+                    size_hint_y:0.4
+                    canvas.before:
+                        Rectangle:
+                            source:"./img/card_spade_01.png"
+                            pos: self.pos
+                            size: self.size
+
+                Label:
+                    id: label1
+                    font_size: 30
+                    size_hint_y:0.4
+                    canvas.before:
+                        Rectangle:
+                            source:"./img/card_spade_01.png"
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    id: label1
+                    font_size: 30
+                    size_hint_y:0.4
+                    canvas.before:
+                        Rectangle:
+                            source:"./img/card_spade_01.png"
                             pos: self.pos
                             size: self.size
 
