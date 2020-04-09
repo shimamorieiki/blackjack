@@ -9,6 +9,7 @@ class Player():
     def __init__(self):
         self.hand = []
         self.name = "pl"
+        self.tip = 5000
 
     def set_hand(self,n):
         self.hand.append(n)
@@ -24,6 +25,15 @@ class Player():
 
     def clear(self):
         self.hand = []
+
+    def get_tip(self):
+        return self.tip
+
+    def set_tip_add(self,n):
+        self.tip = self.tip + n
+
+    def set_tip_minus(self,n):
+        self.tip = self.tip - n
 
 
 class Dealer(Player):
@@ -63,7 +73,13 @@ class Game():
         # print(d)
         self.dl = Dealer()
         self.pl = Player()
+        self.bet = 100
 
+    def get_bet(self):
+        return self.bet
+
+    def set_bet(self,n):
+        self.bet = n
 
     def hit(self):
         #ここまではどうにかしてトランプの情報が残ってるからうまく画像に反映させたい
@@ -88,6 +104,7 @@ class Game():
 
         if score > 21 and dealer_score > 21:
             print("You Lose1")
+
         elif score < 22 and dealer_score > 21:
             print("You Win11")
         elif score < 22 and score > dealer_score:
@@ -98,7 +115,30 @@ class Game():
             print("You Lose4")
 
 
-    def play(self):
+    def clear(self):
+        self.pl.clear()
+        self.dl.clear()
+
+    def bet(self):
+        x = input("いくらbetしますか => ")
+        print(x)
+        if x == None:
+            self.set_bet(100)
+            self.pl.set_tip_minus(100)
+        elif abs(int(x)) < self.pl.get_tip():
+            self.set_bet(abs(int(x)))
+            self.pl.set_tip_minus(abs(int(x)))
+        else:
+            print("現在の最大額 "+ str(self.pl.get_tip()) +" をベットします")
+            self.set_bet(self.pl.get_tip())
+            self.pl.set_tip_minus(self.pl.get_tip())
+
+
+    def deal(self):
+
+        print("Tip:"+ str(self.pl.get_tip()))
+        print(self.bet())
+        print("Tip:"+ str(self.pl.get_tip()))
 
         self.pl.set_hand(self.hit())
         self.dl.set_hand(self.hit())
@@ -138,15 +178,11 @@ class Game():
 
         self.win_lose()
 
-    def clear(self):
-        self.pl.clear()
-        self.dl.clear()
-
 
 def main():
     g = Game()
     while True:
-        g.play()
+        g.deal()
         x = input("まだやりますか y/n")
         if x =="n":
             break
