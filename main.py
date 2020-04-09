@@ -107,10 +107,13 @@ class Game():
 
         elif score < 22 and dealer_score > 21:
             print("You Win11")
+            self.pl.set_tip_add(self.get_bet()*2)
         elif score < 22 and score > dealer_score:
             print("You Win2")
+            self.pl.set_tip_add(self.get_bet()*2)
         elif score == dealer_score:
             print("Draw3")
+            self.pl.set_tip_add(self.get_bet())
         else:
             print("You Lose4")
 
@@ -119,7 +122,7 @@ class Game():
         self.pl.clear()
         self.dl.clear()
 
-    def bet(self):
+    def tip_bet(self):
         x = input("いくらbetしますか => ")
         print(x)
         if x == None:
@@ -134,10 +137,11 @@ class Game():
             self.pl.set_tip_minus(self.pl.get_tip())
 
 
+
     def deal(self):
 
         print("Tip:"+ str(self.pl.get_tip()))
-        print(self.bet())
+        self.tip_bet()
         print("Tip:"+ str(self.pl.get_tip()))
 
         self.pl.set_hand(self.hit())
@@ -177,6 +181,7 @@ class Game():
                 break
 
         self.win_lose()
+        print("Tip:"+ str(self.pl.get_tip()))
 
 
 def main():
