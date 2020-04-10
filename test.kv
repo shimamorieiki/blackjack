@@ -5,8 +5,6 @@ TextWidget:
         orientation: 'vertical'
         size: root.size
         canvas.before:
-            # Color:
-            #     rgba:1,0,0,1
             Rectangle:
                 source: "./img/457794-PFCW5A-392.jpg"
                 pos: self.pos
@@ -16,7 +14,6 @@ TextWidget:
 
         BoxLayout:
             orientation: 'vertical'
-            size_hint_y:0.5
 
             BoxLayout:
                 orientation: 'horizontal'
@@ -25,8 +22,6 @@ TextWidget:
                     orientation: 'horizontal'
 
                     Label:
-                        id: label1
-                        font_size: 68
                         size_hint_x: 0.2
 
 
@@ -92,6 +87,7 @@ TextWidget:
                                     source:"./img/card_spade_03.png"
                                     pos: self.pos
                                     size: self.size
+
                     Label:
                         id: label1
                         font_size: 68
@@ -104,41 +100,160 @@ TextWidget:
                                 size: self.size
 
         BoxLayout:
+            size_hint_y:0.1
+
+        BoxLayout:
             orientation: 'horizontal'
+            canvas.before:
+                Rectangle:
+                    source:'./img/OIP6N1PN9K4.jpg'
+                    pos: self.pos
+                    size: self.size
+
             BoxLayout:
-                size_hint_x:0.2
+                orientation: 'vertical'
 
                 BoxLayout:
-                    orientation:"vertical"
-                    canvas.before:
-                        Color:
-                            rgba:1,0,1,1
-                        Rectangle:
-                            source:"./img/OIP6N1PN9K4.jpg"
-                            pos: self.pos
-                            size: self.size
+                    orientation: 'horizontal'
+
+                    Label:
+                        id: label1
+                        font_size: 20
+                        text: "hand"
+
+                    Label:
+                        id:label1
+                        font_size: 40
+                        text: '50000'
+                        color:0,1,1,1
+
+                BoxLayout:
+                    orientation: 'horizontal'
 
                     Label:
                         id: label1
                         font_size: 20
                         text: "bet"
 
-                    BoxLayout:
-                        orientation:"horizontal"
+                    Label:
+                        id:label1
+                        text: '{:.0f}'.format(testSlider.value)
+                        font_size:40
+                        color:0,1,1,1
 
-                        Slider:
-                            id: testSlider
-                            size_hint_x: 0.75
-                            min: 1
-                            max: 10000
-                            value: 20.0
+                Slider:
+                    id: testSlider
+                    size_hint_x: 0.75
+                    min: 1
+                    max: 10000
+                    value: 20.0
 
-                        TextInput:
-                            id:te
-                            size_hint_x: 0.25
-                            text: '{:.0f}'.format(testSlider.value)
-                            multiline: False
-                            on_text_validate: testSlider.value = int(self.text)
+            Label:
+                size_hint_x:0.1
+
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    size_hint_y:0.1
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        size_hint_x:0.1
+
+                    Label:
+                        id: label1
+                        font_size: 50
+                        text: "YOU WIN"
+                        color:1,0,0,1
+                        canvas.before:
+                            Color:
+                                rgba:0,1,1,1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        size_hint_x:0.1
+                        
+                Label:
+                    size_hint_y:0.1
+
+            Label:
+                size_hint_x:0.1
+
+            BoxLayout:
+                orientation: 'horizontal'
+
+                BoxLayout:
+                    orientation:'vertical'
+
+                    Label:
+
+                    Button:
+                        id: button1
+                        font_size: 20
+                        on_press: root.buttonClicked()
+                        canvas.after:
+                            Rectangle:
+                                source: "./img/cman20200409203101338.png"
+                                pos: self.pos
+                                size: self.size
+
+                    Label:
+
+                BoxLayout:
+                    orientation:'vertical'
+
+                    Button:
+                        id: button1
+                        font_size: 20
+                        on_press: root.buttonClicked()
+                        canvas.after:
+                            Rectangle:
+                                source: "./img/cman20200409203101338.png"
+                                pos: self.pos
+                                size: self.size
+
+                    Label:
+
+
+                    Button:
+                        id: button1
+                        font_size: 20
+                        on_press: root.buttonClicked()
+                        canvas.after:
+                            Rectangle:
+                                source: "./img/cman20200409203101338.png"
+                                pos: self.pos
+                                size: self.size
+
+                BoxLayout:
+                    orientation:'vertical'
+
+                    Label:
+
+                    Button:
+                        id: button1
+                        font_size: 20
+                        on_press: root.buttonClicked()
+                        canvas.after:
+                            Rectangle:
+                                source: "./img/cman20200409203101338.png"
+                                pos: self.pos
+                                size: self.size
+
+                    Label:
+
+        BoxLayout:
+            size_hint_y:0.1
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            BoxLayout:
+                size_hint_x:0.2
+                Label:
+                    font_size:20
+                    text:'20'
 
             BoxLayout:
                 orientation: 'horizontal'
@@ -146,17 +261,7 @@ TextWidget:
                 Label:
                     id: label1
                     font_size: 30
-                    size_hint_y:0.4
-                    canvas.before:
-                        Rectangle:
-                            source:"./img/card_spade_01.png"
-                            pos: self.pos
-                            size: self.size
-
-                Label:
-                    id: label1
-                    font_size: 30
-                    size_hint_y:0.4
+                    size_hint_y:0.7
                     canvas.before:
                         Rectangle:
                             source:"./img/card_spade_02.png"
@@ -166,7 +271,16 @@ TextWidget:
                 Label:
                     id: label1
                     font_size: 30
-                    size_hint_y: 0.4
+                    size_hint_y:0.7
+                    canvas.before:
+                        Rectangle:
+                            source:"./img/card_spade_02.png"
+                            pos: self.pos
+                            size: self.size
+
+                Label:
+                    id: label1
+                    size_hint_y: 0.7
                     canvas.before:
                         Rectangle:
                             source:"./img/card_spade_03.png"
@@ -175,8 +289,7 @@ TextWidget:
 
                 Label:
                     id: label1
-                    font_size: 30
-                    size_hint_y:0.4
+                    size_hint_y:0.7
                     canvas.before:
                         Rectangle:
                             source:"./img/card_spade_01.png"
@@ -185,17 +298,16 @@ TextWidget:
 
                 Label:
                     id: label1
-                    font_size: 30
-                    size_hint_y:0.4
+                    size_hint_y:0.7
                     canvas.before:
                         Rectangle:
                             source:"./img/card_spade_01.png"
                             pos: self.pos
                             size: self.size
+
                 Label:
                     id: label1
-                    font_size: 30
-                    size_hint_y:0.4
+                    size_hint_y:0.7
                     canvas.before:
                         Rectangle:
                             source:"./img/card_spade_01.png"
@@ -204,50 +316,3 @@ TextWidget:
 
             BoxLayout:
                 size_hint_x:0.2
-                size_hint_y:0.5
-
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y:0.3
-
-            BoxLayout:
-                orientation: 'vertical'
-                Label:
-                    id: label1
-                    font_size: 68
-                    text: "score"
-                    canvas.before:
-                        Color:
-                            rgba: 0, 1, 0.5, 1
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
-
-            BoxLayout:
-
-                orientation: 'horizontal'
-                color:0,0,0,0
-
-                Label:
-                    id: label2
-                    font_size: 20
-                    text: "text.root"
-
-                Button:
-                    id: button1
-                    text: "deal"
-                    font_size: 20
-                    on_press: root.buttonClicked()
-                    # canvas.before:
-                    #     Ellipse:
-                    #         pos: self.pos
-                    #         size: self.size
-                Button:
-                    id: button1
-                    font_size: 20
-                    on_press: root.buttonClicked()
-                    canvas.after:
-                        Rectangle:
-                            source: "./img/cman20200409203101338.png"
-                            pos: self.pos
-                            size: self.size
