@@ -24,6 +24,29 @@ class Player():
     def score(self):
         return sum(self.hand)
 
+    def score_gui(self):
+        score = []
+        sum = 0
+        sum2 =0
+        for i in range(0,len(self.hand)):
+
+            if self.hand[i]%13+1 >= 10:
+                sum = sum + 10
+            elif self.hand[i]%13+1 == 1:
+                sum2 = sum
+                sum = sum + 1
+                sum2 = sum2 + 11
+            else:
+                sum = sum + self.hand[i]%13+1
+
+        if sum2 > 21:
+            return str(sum)
+        elif sum2>0:
+            return str(sum)+"/"+str(sum2)
+        else:
+            return str(sum)
+
+
     def clear(self):
         self.hand = []
 
@@ -96,6 +119,21 @@ class Game():
             print(self.card)
             return self.card.pop(0)%13+1
 
+    def hit_gui(self):
+        #ここまではどうにかしてトランプの情報が残ってるからうまく画像に反映させたい
+        if len(self.card) >= 10:
+            return self.card.pop(0)
+        else:
+            print("残りカードが少なくなってきた")
+            print(self.card)
+            c = list(range(52))
+            random.shuffle(c)
+            self.card.extend(c)
+            print("カードを追加しました")
+            print(self.card)
+            return self.card.pop(0)
+
+
     def win_lose(self):
         score = sum(self.pl.get_hand())
         dealer_score = sum(self.dl.get_hand())
@@ -124,8 +162,6 @@ class Game():
         self.dl.clear()
 
     def tip_bet(self):
-        x = input("いくらbetしますか => ")
-        print(x)
         if x == None:
             self.set_bet(100)
             self.pl.set_tip_minus(100)
@@ -137,6 +173,19 @@ class Game():
             self.set_bet(self.pl.get_tip())
             self.pl.set_tip_minus(self.pl.get_tip())
 
+
+    def tip_bet_gui(self,n):
+        # if x == None:
+        #     self.set_bet(100)
+        #     self.pl.set_tip_minus(100)
+        # el
+        if n < self.pl.get_tip():
+            self.set_bet(n)
+            self.pl.set_tip_minus(n)
+        else:
+            print("現在の最大額 "+ str(self.pl.get_tip()) +" をベットします")
+            self.set_bet(self.pl.get_tip())
+            self.pl.set_tip_minus(self.pl.get_tip())
 
 
     def deal(self):
@@ -150,6 +199,7 @@ class Game():
 
         print(self.pl.get_hand())
         print(self.dl.get_hand())
+
         print(self.pl.get_name() + " の得点は " + str(self.pl.score()))
         print(self.dl.get_name() + " の得点は " + str(self.dl.score()))
 

@@ -122,9 +122,9 @@ TextWidget:
                         text: "hand"
 
                     Label:
-                        id:label1
+                        id:hand_num
                         font_size: 40
-                        text: '50000'
+                        text: '5000'
                         color:0,1,1,1
 
                 BoxLayout:
@@ -145,7 +145,7 @@ TextWidget:
                     id: testSlider
                     size_hint_x: 0.75
                     min: 1
-                    max: 10000
+                    max: 5000
                     value: 20.0
 
             Label:
@@ -217,9 +217,9 @@ TextWidget:
 
 
                     Button:
-                        id: button1
+                        id: HitButton
                         font_size: 20
-                        on_press: root.buttonClicked()
+                        on_press: root.hit()
                         canvas.after:
                             Rectangle:
                                 source: "./img/cman20200409203101338.png"
@@ -252,67 +252,49 @@ TextWidget:
             BoxLayout:
                 size_hint_x:0.2
                 Label:
+                    id: pl_score
                     font_size:20
-                    text:'20'
+                    text:''
 
             BoxLayout:
                 orientation: 'horizontal'
 
-                Label:
-                    id: label1
+                Image:
+                    id: pl_card1
                     font_size: 30
                     size_hint_y:0.7
-                    canvas.before:
-                        Rectangle:
-                            source:"./img/card_spade_02.png"
-                            pos: self.pos
-                            size: self.size
+                    source:""
 
-                Label:
-                    id: label1
+                Image:
+                    id: pl_card2
                     font_size: 30
                     size_hint_y:0.7
-                    canvas.before:
-                        Rectangle:
-                            source:"./img/card_spade_02.png"
-                            pos: self.pos
-                            size: self.size
+                    source:""
 
-                Label:
-                    id: label1
-                    size_hint_y: 0.7
-                    canvas.before:
-                        Rectangle:
-                            source:"./img/card_spade_03.png"
-                            pos: self.pos
-                            size: self.size
-
-                Label:
-                    id: label1
+                Image:
+                    id: pl_card3
+                    font_size: 30
                     size_hint_y:0.7
-                    canvas.before:
-                        Rectangle:
-                            source:"./img/card_spade_01.png"
-                            pos: self.pos
-                            size: self.size
+                    source:""
 
-                Label:
-                    id: label1
+                Image:
+                    id: pl_card4
+                    font_size: 30
                     size_hint_y:0.7
-                    canvas.before:
-                        Rectangle:
-                            source:"./img/card_spade_01.png"
-                            pos: self.pos
-                            size: self.size
+                    source:""
 
-                Label:
-                    id: label1
+                Image:
+                    id: pl_card5
+                    font_size: 30
                     size_hint_y:0.7
-                    canvas.before:
-                        Rectangle:
-                            source:"./img/card_spade_01.png"
-                            pos: self.pos
-                            size: self.size
+                    source:""
+
+                Image:
+                    id: pl_card6
+                    font_size: 30
+                    size_hint_y:0.7
+                    source:""
+
 
             BoxLayout:
                 size_hint_x:0.2
