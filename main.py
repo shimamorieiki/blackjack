@@ -1,6 +1,7 @@
 # ここから動くことが判明したのでBJのアプリを作ってみる
 
 import random
+import gui
 
 
 class Player():
@@ -199,4 +200,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    gui.TestApp().run()

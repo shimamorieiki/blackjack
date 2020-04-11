@@ -173,7 +173,7 @@ TextWidget:
                                 size: self.size
                     Label:
                         size_hint_x:0.1
-                        
+
                 Label:
                     size_hint_y:0.1
 
@@ -189,9 +189,9 @@ TextWidget:
                     Label:
 
                     Button:
-                        id: button1
+                        id: DealButton
                         font_size: 20
-                        on_press: root.buttonClicked()
+                        on_press: root.deal()
                         canvas.after:
                             Rectangle:
                                 source: "./img/cman20200409203101338.png"
