@@ -32,16 +32,19 @@ class Player():
 
             if self.hand[i]%13+1 >= 10:
                 sum = sum + 10
+                sum2 = sum + 10
             elif self.hand[i]%13+1 == 1:
-                sum2 = sum
                 sum = sum + 1
                 sum2 = sum2 + 11
             else:
                 sum = sum + self.hand[i]%13+1
+                sum2 = sum2 + self.hand[i]%13+1
 
-        if sum2 > 21:
+        if sum == sum2:
             return str(sum)
-        elif sum2>0:
+        elif sum2 > 21:
+            return str(sum)
+        elif sum2 > 0:
             return str(sum)+"/"+str(sum2)
         else:
             return str(sum)
