@@ -59,6 +59,7 @@ class TextWidget(Widget):
         else:
             print("dl"+str(len(cards)))
             print(cards)
+            print("ループしてるのここ")
             self.ids["dl_card1"].source = "./img/blank.png"
             self.ids["dl_card2"].source = "./img/blank.png"
             self.ids["dl_card3"].source = "./img/blank.png"
@@ -100,6 +101,7 @@ class TextWidget(Widget):
         if self.ingameBool == False:
             self.ingameBool = True
             self.game.clear()
+            self.ids["wltextLabel"].text = ""
             self.ids["hand_num"].text = str(self.game.pl.get_tip())
             self.game.tip_bet_gui(int(self.ids["testSlider"].value))
             self.ids["hand_num"].text = str(self.game.pl.get_tip())
@@ -135,50 +137,49 @@ class TextWidget(Widget):
                 max = int(score)
 
             if max >21:
-                self.ids["wltextLabel"].text = self.game.win_lose_gui()
-                self.ingameBool == False
+                plmax = self.game.pl.get_sum()
+                print(plmax)
+                dlmax = self.game.dl.get_sum()
+                print(dlmax)
+                self.ids["wltextLabel"].text = self.game.win_lose_gui(plmax,dlmax)
+                self.ingameBool = False
             elif self.game.pl.score_gui()  == 21:
-                self.ids["wltextLabel"].text = self.game.win_lose_gui()
-                self.ingameBool == False
+                plmax = self.game.pl.get_sum()
+                print(plmax)
+                dlmax = self.game.dl.get_sum()
+                print(dlmax)
+                self.ids["wltextLabel"].text = self.game.win_lose_gui(plmax,dlmax)
+                self.ingameBool = False
 
     def hit_d(self):
 
-        plscore = self.game.pl.score_gui()
-        if "/" in plscore:
-            list = plscore.split("/")
-            plmax = max(list)
-            plmax = int(plmax)
-        else:
-            plmax = int(plscore)
-
-        dlscore = self.game.dl.score_gui()
-        if "/" in dlscore:
-            print("1が出たはず")
-            list = dlscore.split("/")
-            dlmax = max(list)
-            dlmax = int(dlmax)
-        else:
-            dlmax = int(dlscore)
-
-        print(plscore)
-        print(dlscore)
-        print(str(plmax))
-        print(str(dlmax))
+        plmax = self.game.pl.get_sum()
+        print(plmax)
+        dlmax = self.game.dl.get_sum()
+        print(dlmax)
 
         while dlmax < 17:
             if dlmax < plmax:
                 self.game.dl.set_hand(self.game.hit_gui())
-                self.arrange(self.game.pl.get_hand(),False)
+                self.arrange(self.game.dl.get_hand(),False)
                 self.ids["dl_score"].text = str(self.game.dl.score_gui())
-
-            if dlmax >= plmax or dlmax > 22:
+            elif dlmax >= plmax:
                 break
+
+            if dlmax > 22:
+                break
+
+            dlmax = self.game.dl.get_sum()
 
 
     def stand(self):
         if self.ingameBool == True:
             self.hit_d()
-            self.ids["wltextLabel"].text = self.game.win_lose_gui()
+            plmax = self.game.pl.get_sum()
+            print(plmax)
+            dlmax = self.game.dl.get_sum()
+            print(dlmax)
+            self.ids["wltextLabel"].text = self.game.win_lose_gui(plmax,dlmax)
             self.ingameBool = False
 
 

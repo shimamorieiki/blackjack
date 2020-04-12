@@ -54,6 +54,20 @@ class Player():
         else:
             return str(sum)
 
+    def get_sum(self):
+        score = self.score_gui()
+        print(score)
+        print("これはどうなの")
+        if "/" in score:
+            list = score.split("/")
+            print(list)
+            newlist = list(map(int, list))
+            max = max(newlist)
+            max = int(max)
+        else:
+            max = int(score)
+        return max
+
 
     def clear(self):
         self.hand = []
@@ -95,7 +109,7 @@ class Game():
     """docstring for Game"""
 
     def __init__(self):
-        c = list(range(52))
+        c = list(range(1,53))
         random.shuffle(c)
         self.card =  c
         print(self.card)
@@ -134,7 +148,7 @@ class Game():
         else:
             print("残りカードが少なくなってきた")
             print(self.card)
-            c = list(range(52))
+            c = list(range(1,52))
             random.shuffle(c)
             self.card.extend(c)
             print("カードを追加しました")
@@ -164,12 +178,12 @@ class Game():
         else:
             print("You Lose4")
 
-    def win_lose_gui(self):
-        score = sum(self.pl.get_hand())
-        dealer_score = sum(self.dl.get_hand())
+    def win_lose_gui(self,s,ds):
+        score = s
+        dealer_score = ds
 
         if dealer_score >=22:
-            return "Dealer Bust"
+            return "Dealer Bust1"
 
         if score > 21 and dealer_score > 21:
             return "You Lose1"
