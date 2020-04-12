@@ -21,83 +21,59 @@ TextWidget:
                 BoxLayout:
                     orientation: 'horizontal'
 
-                    Label:
-                        size_hint_x: 0.2
+                    BoxLayout:
+                        size_hint_x:0.2
+                        Label:
+                            id: dl_score
+                            font_size:20
+                            text:'32'
 
 
                     BoxLayout:
                         orientation: 'horizontal'
 
-                        Label:
-                            id: label1
+                        Image:
+                            id: dl_card1
                             size_hint_x: 0.2
-                            size_hint_y: 0.7
-                            canvas.before:
-                                Rectangle:
-                                    source:"./img/card_spade_03.png"
-                                    pos: self.pos
-                                    size: self.size
+                            size_hint_y: 1
+                            source:"./img/blank.png"
 
-                        Label:
-                            id: label1
+
+                        Image:
+                            id: dl_card2
                             size_hint_x: 0.2
-                            size_hint_y: 0.7
-                            canvas.before:
-                                Rectangle:
-                                    source:"./img/card_spade_03.png"
-                                    pos: self.pos
-                                    size: self.size
+                            size_hint_y: 1
+                            source:"./img/blank.png"
 
-                        Label:
-                            id: label1
+                        Image:
+                            id: dl_card3
                             size_hint_x: 0.2
-                            size_hint_y: 0.7
-                            canvas.before:
-                                Rectangle:
-                                    source:"./img/card_spade_03.png"
-                                    pos: self.pos
-                                    size: self.size
+                            size_hint_y: 1
+                            source:"./img/blank.png"
 
-                        Label:
-                            id: label1
+                        Image:
+                            id: dl_card4
                             size_hint_x: 0.2
-                            size_hint_y: 0.7
-                            canvas.before:
-                                Rectangle:
-                                    source:"./img/card_spade_03.png"
-                                    pos: self.pos
-                                    size: self.size
+                            size_hint_y: 1
+                            source:"./img/blank.png"
 
-                        Label:
-                            id: label1
+                        Image:
+                            id: dl_card5
                             size_hint_x: 0.2
-                            size_hint_y: 0.7
-                            canvas.before:
-                                Rectangle:
-                                    source:"./img/card_spade_03.png"
-                                    pos: self.pos
-                                    size: self.size
+                            size_hint_y: 1
+                            source:"./img/blank.png"
 
-                        Label:
-                            id: label1
+                        Image:
+                            id: dl_card6
                             size_hint_x: 0.2
-                            size_hint_y: 0.7
-                            canvas.before:
-                                Rectangle:
-                                    source:"./img/card_spade_03.png"
-                                    pos: self.pos
-                                    size: self.size
+                            size_hint_y: 1
+                            source:"./img/blank.png"
 
-                    Label:
-                        id: label1
-                        font_size: 68
+                    Image:
+                        id: dl_deck
                         size_hint_x: 0.2
-                        # text: "dec"
-                        canvas.before:
-                            Rectangle:
-                                source: "./img/OIP.jpg"
-                                pos: self.pos
-                                size: self.size
+                        size_hint_y: 1
+                        source:"./img/card_back.png"
 
         BoxLayout:
             size_hint_y:0.1
@@ -161,9 +137,9 @@ TextWidget:
                         size_hint_x:0.1
 
                     Label:
-                        id: label1
+                        id: wltextLabel
                         font_size: 50
-                        text: "YOU WIN"
+                        text: ""
                         color:1,0,0,1
                         canvas.before:
                             Color:
@@ -232,9 +208,9 @@ TextWidget:
                     Label:
 
                     Button:
-                        id: button1
+                        id: StandButton
                         font_size: 20
-                        on_press: root.buttonClicked()
+                        on_press: root.stand()
                         canvas.after:
                             Rectangle:
                                 source: "./img/cman20200409203101338.png"
@@ -261,39 +237,33 @@ TextWidget:
 
                 Image:
                     id: pl_card1
-                    font_size: 30
-                    size_hint_y:0.7
-                    source:""
+                    size_hint_y:1
+                    source:"./img/blank.png"
 
                 Image:
                     id: pl_card2
-                    font_size: 30
-                    size_hint_y:0.7
-                    source:""
+                    size_hint_y:1
+                    source:"./img/blank.png"
 
                 Image:
                     id: pl_card3
-                    font_size: 30
-                    size_hint_y:0.7
-                    source:""
+                    size_hint_y:1
+                    source:"./img/blank.png"
 
                 Image:
                     id: pl_card4
-                    font_size: 30
-                    size_hint_y:0.7
-                    source:""
+                    size_hint_y:1
+                    source:"./img/blank.png"
 
                 Image:
                     id: pl_card5
-                    font_size: 30
-                    size_hint_y:0.7
-                    source:""
+                    size_hint_y:1
+                    source:"./img/blank.png"
 
                 Image:
                     id: pl_card6
-                    font_size: 30
-                    size_hint_y:0.7
-                    source:""
+                    size_hint_y:1
+                    source:"./img/blank.png"
 
 
             BoxLayout:

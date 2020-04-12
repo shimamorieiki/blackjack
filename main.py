@@ -27,18 +27,23 @@ class Player():
     def score_gui(self):
         score = []
         sum = 0
-        sum2 =0
+        sum2 = 0
         for i in range(0,len(self.hand)):
 
-            if self.hand[i]%13+1 >= 10:
+            if self.hand[i]%13 == 0:
                 sum = sum + 10
-                sum2 = sum + 10
-            elif self.hand[i]%13+1 == 1:
+                sum2 = sum2 + 10
+            if self.hand[i]%13 >= 11:
+                sum = sum + 10
+                sum2 = sum2 + 10
+            elif self.hand[i]%13 == 1:
                 sum = sum + 1
                 sum2 = sum2 + 11
             else:
-                sum = sum + self.hand[i]%13+1
-                sum2 = sum2 + self.hand[i]%13+1
+                sum = sum + self.hand[i]%13
+                sum2 = sum2 + self.hand[i]%13
+# 1 2 3 4 5 6 7 8 9 10 11 12 13
+# 1 2 3 4 5 6 7 8 9 10 11 12  0
 
         if sum == sum2:
             return str(sum)
@@ -159,6 +164,28 @@ class Game():
         else:
             print("You Lose4")
 
+    def win_lose_gui(self):
+        score = sum(self.pl.get_hand())
+        dealer_score = sum(self.dl.get_hand())
+
+        if dealer_score >=22:
+            return "Dealer Bust"
+
+        if score > 21 and dealer_score > 21:
+            return "You Lose1"
+
+        elif score < 22 and dealer_score > 21:
+            return "You Win11"
+            self.pl.set_tip_add(self.get_bet()*2)
+        elif score < 22 and score > dealer_score:
+            return "You Win2"
+            self.pl.set_tip_add(self.get_bet()*2)
+        elif score == dealer_score:
+            return "Draw3"
+            self.pl.set_tip_add(self.get_bet())
+        else:
+            return "You Lose4"
+
 
     def clear(self):
         self.pl.clear()
@@ -189,7 +216,6 @@ class Game():
             print("現在の最大額 "+ str(self.pl.get_tip()) +" をベットします")
             self.set_bet(self.pl.get_tip())
             self.pl.set_tip_minus(self.pl.get_tip())
-
 
     def deal(self):
 
