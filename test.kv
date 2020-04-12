@@ -23,11 +23,20 @@ TextWidget:
 
                     BoxLayout:
                         size_hint_x:0.2
+                        orientation:'vertical'
+                        Label:
                         Label:
                             id: dl_score
                             font_size:20
-                            text:'32'
-
+                            text:''
+                            color:1,1,1,1
+                            canvas.before:
+                                Color:
+                                    rgba:0,0,0,0.8
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
 
                     BoxLayout:
                         orientation: 'horizontal'
@@ -136,17 +145,10 @@ TextWidget:
                     Label:
                         size_hint_x:0.1
 
-                    Label:
+                    Image:
                         id: wltextLabel
-                        font_size: 50
-                        text: ""
-                        color:1,0,0,1
-                        canvas.before:
-                            Color:
-                                rgba:0,1,1,1
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
+                        source:"./img/scoreblank.png"
+
                     Label:
                         size_hint_x:0.1
 
@@ -170,7 +172,7 @@ TextWidget:
                         on_press: root.deal()
                         canvas.after:
                             Rectangle:
-                                source: "./img/cman20200409203101338.png"
+                                source: "./img/deal.png"
                                 pos: self.pos
                                 size: self.size
 
@@ -198,7 +200,7 @@ TextWidget:
                         on_press: root.hit()
                         canvas.after:
                             Rectangle:
-                                source: "./img/cman20200409203101338.png"
+                                source: "./img/hit.png"
                                 pos: self.pos
                                 size: self.size
 
@@ -213,7 +215,7 @@ TextWidget:
                         on_press: root.stand()
                         canvas.after:
                             Rectangle:
-                                source: "./img/cman20200409203101338.png"
+                                source: "./img/stand.png"
                                 pos: self.pos
                                 size: self.size
 
@@ -227,10 +229,21 @@ TextWidget:
 
             BoxLayout:
                 size_hint_x:0.2
+                orientation:'vertical'
+                Label:
                 Label:
                     id: pl_score
                     font_size:20
                     text:''
+                    color:1,1,1,1
+                    canvas.before:
+                        Color:
+                            rgba:0,0,0,0.8
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+
 
             BoxLayout:
                 orientation: 'horizontal'

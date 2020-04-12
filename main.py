@@ -28,27 +28,39 @@ class Player():
         score = []
         sum = 0
         sum2 = 0
+        count1 = 0
         for i in range(0,len(self.hand)):
 
-            if self.hand[i]%13 == 0:
-                sum = sum + 10
-                sum2 = sum2 + 10
-            if self.hand[i]%13 >= 11:
+            if self.hand[i]%13 == 0 or self.hand[i]%13 >= 11:
                 sum = sum + 10
                 sum2 = sum2 + 10
             elif self.hand[i]%13 == 1:
-                sum = sum + 1
-                sum2 = sum2 + 11
+                count1 = count1 + 1
             else:
                 sum = sum + self.hand[i]%13
                 sum2 = sum2 + self.hand[i]%13
-# 1 2 3 4 5 6 7 8 9 10 11 12 13
-# 1 2 3 4 5 6 7 8 9 10 11 12  0
+
+        if count1 == 0:
+            pass
+        elif count1 == 1:
+            sum = sum + 1
+            sum2 = sum2 +11
+        elif count1 == 2:
+            sum = sum + 2
+            sum2 = sum2 +12
+        elif count1 == 3:
+            sum = sum + 3
+            sum2 = sum2 +13
+        elif count1 == 4:
+            sum = sum + 4
+            sum2 = sum2 +14
 
         if sum == sum2:
             return str(sum)
         elif sum2 > 21:
             return str(sum)
+        elif sum2 == 21:
+            return str(sum2)
         elif sum2 > 0:
             return str(sum)+"/"+str(sum2)
         else:
@@ -56,14 +68,9 @@ class Player():
 
     def get_sum(self):
         score = self.score_gui()
-        print(score)
-        print("これはどうなの")
-        if "/" in score:
+        if '/' in score:
             list = score.split("/")
-            print(list)
-            newlist = list(map(int, list))
-            max = max(newlist)
-            max = int(max)
+            max = int(list[1])
         else:
             max = int(score)
         return max
@@ -113,10 +120,6 @@ class Game():
         random.shuffle(c)
         self.card =  c
         print(self.card)
-        # d =[]
-        # for i in c:
-        #     d.append(i%13+1)
-        # print(d)
         self.dl = Dealer()
         self.pl = Player()
         self.bet = 100
@@ -183,22 +186,22 @@ class Game():
         dealer_score = ds
 
         if dealer_score >=22:
-            return "Dealer Bust1"
+            return 1
 
         if score > 21 and dealer_score > 21:
-            return "You Lose1"
+            return 2
 
         elif score < 22 and dealer_score > 21:
-            return "You Win11"
+            return 1
             self.pl.set_tip_add(self.get_bet()*2)
         elif score < 22 and score > dealer_score:
-            return "You Win2"
+            return 1
             self.pl.set_tip_add(self.get_bet()*2)
         elif score == dealer_score:
-            return "Draw3"
+            return 3
             self.pl.set_tip_add(self.get_bet())
         else:
-            return "You Lose4"
+            return 2
 
 
     def clear(self):
