@@ -6,6 +6,8 @@ from kivy.uix.widget import Widget
 from kivy.properties import StringProperty
 import main
 import time
+import sys
+import os
 
 class TextWidget(Widget):
     text = StringProperty()    # プロパティの追加
@@ -16,6 +18,13 @@ class TextWidget(Widget):
         g = main.Game()
         self.set_game(g)
         self.ingameBool = False
+
+    def resource_path(relative_path):
+        if hasattr(sys, '_MEIPASS'):
+            return os.path.join(sys._MEIPASS, relative_path)
+        return os.path.join(os.path.abspath("."), relative_path)
+        # resource_path("icon000.png")
+
 
     def set_game(self,g):
         self.game = g
@@ -181,8 +190,6 @@ class TextWidget(Widget):
             self.ingameBool = True
             self.game.clear()
             self.ids["wltextLabel"].source = "./img/scoreblank.png"
-
-
             self.ids["hand_num"].text = str(self.game.pl.get_tip())
             self.game.tip_bet_gui(int(self.ids["testSlider"].value))
             self.ids["hand_num"].text = str(self.game.pl.get_tip())

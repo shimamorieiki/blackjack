@@ -164,32 +164,37 @@ TextWidget:
                 BoxLayout:
                     orientation:'vertical'
 
-                    Label:
+                    Button:
+                        id: DblButton
+                        # on_press: root.deal()
+                        canvas.after:
+                            Rectangle:
+                                source: "./img/double.png"
+                                pos: self.pos
+                                size: self.size
 
                     Button:
                         id: DealButton
-                        font_size: 20
+                        font_size: 30
                         on_press: root.deal()
                         canvas.after:
                             Rectangle:
                                 source: "./img/deal.png"
                                 pos: self.pos
                                 size: self.size
-
                     Label:
 
                 BoxLayout:
                     orientation:'vertical'
 
-                    Label:
-                        id: button1
-                        font_size: 20
-                        # on_press: root.buttonClicked()
-                        # canvas.after:
-                        #     Rectangle:
-                        #         source: "./img/cman20200409203101338.png"
-                        #         pos: self.pos
-                        #         size: self.size
+                    Button:
+                        id: InsButton
+                        # on_press: root.deal()
+                        canvas.after:
+                            Rectangle:
+                                source: "./img/insurance.png"
+                                pos: self.pos
+                                size: self.size
 
                     Label:
 
@@ -207,12 +212,21 @@ TextWidget:
                 BoxLayout:
                     orientation:'vertical'
 
-                    Label:
+                    Button:
+                        id: SplButton
+                        # on_press: root.deal()
+                        canvas.after:
+                            Rectangle:
+                                source: "./img/split.png"
+                                pos: self.pos
+                                size: self.size
 
                     Button:
                         id: StandButton
                         font_size: 20
                         on_press: root.stand()
+                        # background_normal: ''
+                        # background_color: 1,1,1,0
                         canvas.after:
                             Rectangle:
                                 source: "./img/stand.png"
