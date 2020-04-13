@@ -119,7 +119,6 @@ class Game():
         c = list(range(1,53))
         random.shuffle(c)
         self.card =  c
-        print(self.card)
         self.dl = Dealer()
         self.pl = Player()
         self.bet = 100
@@ -149,13 +148,9 @@ class Game():
         if len(self.card) >= 10:
             return self.card.pop(0)
         else:
-            print("残りカードが少なくなってきた")
-            print(self.card)
             c = list(range(1,52))
             random.shuffle(c)
             self.card.extend(c)
-            print("カードを追加しました")
-            print(self.card)
             return self.card.pop(0)
 
 
@@ -230,7 +225,6 @@ class Game():
             self.set_bet(n)
             self.pl.set_tip_minus(n)
         else:
-            print("現在の最大額 "+ str(self.pl.get_tip()) +" をベットします")
             self.set_bet(self.pl.get_tip())
             self.pl.set_tip_minus(self.pl.get_tip())
 

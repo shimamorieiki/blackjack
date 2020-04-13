@@ -22,8 +22,6 @@ class TextWidget(Widget):
 
     def arrange(self,cards,boolpl):
         if boolpl:
-            print("pl"+str(len(cards)))
-            print(cards)
             self.ids["pl_card1"].source = "./img/blank.png"
             self.ids["pl_card2"].source = "./img/blank.png"
             self.ids["pl_card3"].source = "./img/blank.png"
@@ -94,30 +92,38 @@ class TextWidget(Widget):
                 self.ids["dl_card5"].source = "./img/card_"+str(cards[4])+".png"
                 self.ids["dl_card6"].source = "./img/card_"+str(cards[5])+".png"
 
+    def scorepaint(self):
+        plmax = self.game.pl.get_sum()
+        dlmax = self.game.dl.get_sum()
+        if plmax == 21:
+            self.ids["pl_score"].text = "BlackJack"
+        elif plmax > 21:
+            self.ids["pl_score"].text = "Bust"
+        else:
+            self.ids["pl_score"].text = str(plmax)
 
-    def deal(self):        # ボタンをクリック時
-        if self.ingameBool == False:
-            self.ingameBool = True
-            self.game.clear()
-            self.ids["wltextLabel"].source = "./img/scoreblank.png"
+        if dlmax == 21:
+            self.ids["dl_score"].text = "BlackJack"
+        elif dlmax > 21:
+            self.ids["dl_score"].text = "Bust"
+        else:
+            self.ids["dl_score"].text = str(dlmax)
+
+        if self.game.win_lose_gui(plmax,dlmax) == 1:
+            self.ids["wltextLabel"].source = "./img/win.png"
+            if plmax == 21:
+                self.game.pl.set_tip_add(int(self.game.get_bet()*2.5))
+            else:
+                self.game.pl.set_tip_add(self.game.get_bet()*2)
+
             self.ids["hand_num"].text = str(self.game.pl.get_tip())
-            self.game.tip_bet_gui(int(self.ids["testSlider"].value))
+
+        elif self.game.win_lose_gui(plmax,dlmax) == 2:
+            self.ids["wltextLabel"].source = "./img/lose.png"
+        elif self.game.win_lose_gui(plmax,dlmax) == 3:
+            self.ids["wltextLabel"].source = "./img/draw.png"
+            self.game.pl.set_tip_add(self.game.get_bet())
             self.ids["hand_num"].text = str(self.game.pl.get_tip())
-
-            self.game.pl.set_hand(self.game.hit_gui())
-            self.game.pl.set_hand(self.game.hit_gui())
-
-            self.game.dl.set_hand(self.game.hit_gui())
-
-            self.arrange(self.game.pl.get_hand(),True)
-            self.arrange(self.game.dl.get_hand(),False)
-            
-            self.ids["pl_score"].text = str(self.game.pl.score_gui())
-            self.ids["dl_score"].text = str(self.game.dl.score_gui())
-
-
-    def buttonClicked(self):# ボタンをクリック時
-        print("ok")
 
     def hit(self):# ボタンをクリック時
         if self.ingameBool == True:
@@ -128,29 +134,18 @@ class TextWidget(Widget):
             dlmax = self.game.dl.get_sum()
 
             if plmax >21:
-                if self.game.win_lose_gui(plmax,dlmax) == 1:
-                    self.ids["wltextLabel"].source = "./img/win.png"
-                elif self.game.win_lose_gui(plmax,dlmax) == 2:
-                    self.ids["wltextLabel"].source = "./img/lose.png"
-                elif self.game.win_lose_gui(plmax,dlmax) == 3:
-                    self.ids["wltextLabel"].source = "./img/draw.png"
 
                 self.ids["pl_score"].text = "Bust"
                 self.game.dl.set_hand(self.game.hit_gui())
                 self.arrange(self.game.dl.get_hand(),False)
-                self.ids["dl_score"].text = str(self.game.dl.score_gui())
+                self.ids["dl_score"].text = str(dlmax)
+                self.scorepaint()
                 self.ingameBool = False
             elif plmax  == 21:
                 self.ids["pl_score"].text = "BlackJack"
                 self.hit_d()
                 dlmax = self.game.dl.get_sum()
-
-                if self.game.win_lose_gui(plmax,dlmax) == 1:
-                    self.ids["wltextLabel"].source = "./img/win.png"
-                elif self.game.win_lose_gui(plmax,dlmax) == 2:
-                    self.ids["wltextLabel"].source = "./img/lose.png"
-                elif self.game.win_lose_gui(plmax,dlmax) == 3:
-                    self.ids["wltextLabel"].source = "./img/draw.png"
+                self.scorepaint()
                 self.ingameBool = False
 
     def hit_d(self):
@@ -162,7 +157,6 @@ class TextWidget(Widget):
             if dlmax < plmax:
                 self.game.dl.set_hand(self.game.hit_gui())
                 self.arrange(self.game.dl.get_hand(),False)
-                self.ids["dl_score"].text = str(self.game.dl.score_gui())
             elif dlmax >= plmax:
                 break
 
@@ -170,27 +164,48 @@ class TextWidget(Widget):
             if dlmax == 21:
                 self.ids["dl_score"].text = "BlackJack"
                 break
-            elif dlmax > 22:
+            elif dlmax > 21:
                 self.ids["dl_score"].text = "Bust"
                 break
-
-
+            else:
+                self.ids["dl_score"].text = str(dlmax)
 
     def stand(self):
         if self.ingameBool == True:
             self.hit_d()
-            plmax = self.game.pl.get_sum()
-            dlmax = self.game.dl.get_sum()
-
-            if self.game.win_lose_gui(plmax,dlmax) == 1:
-                self.ids["wltextLabel"].source = "./img/win.png"
-            elif self.game.win_lose_gui(plmax,dlmax) == 2:
-                self.ids["wltextLabel"].source = "./img/lose.png"
-            elif self.game.win_lose_gui(plmax,dlmax) == 3:
-                self.ids["wltextLabel"].source = "./img/draw.png"
-
+            self.scorepaint()
             self.ingameBool = False
 
+    def deal(self):        # ボタンをクリック時
+        if self.ingameBool == False:
+            self.ingameBool = True
+            self.game.clear()
+            self.ids["wltextLabel"].source = "./img/scoreblank.png"
+
+
+            self.ids["hand_num"].text = str(self.game.pl.get_tip())
+            self.game.tip_bet_gui(int(self.ids["testSlider"].value))
+            self.ids["hand_num"].text = str(self.game.pl.get_tip())
+
+            self.game.pl.set_hand(self.game.hit_gui())
+            self.game.pl.set_hand(self.game.hit_gui())
+
+            self.game.dl.set_hand(self.game.hit_gui())
+
+            self.arrange(self.game.pl.get_hand(),True)
+            self.arrange(self.game.dl.get_hand(),False)
+
+            plmax = self.game.pl.score_gui()
+            dlmax = self.game.dl.score_gui()
+
+            self.ids["dl_score"].text = str(dlmax)
+            if plmax == "21":
+                self.ids["pl_score"].text = "BlackJack"
+                self.hit_d()
+                self.scorepaint()
+                self.ingameBool = False
+            else:
+                self.ids["pl_score"].text = str(plmax)
 
 class TestApp(App):
     def __init__(self, **kwargs):
